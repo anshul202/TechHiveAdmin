@@ -29,6 +29,7 @@ const Addproduct = () => {
     await fetch(`${import.meta.env.VITE_URL+'/upload'}`,{
       method:'POST',
       headers:{
+        token:localStorage.getItem('token'),
         Accept:'application/json',
       },
       body:formData
@@ -70,9 +71,10 @@ const Addproduct = () => {
             <option value="accessories">Accessories</option>
           </select>
         </div>
-        <div className="addproductitemfields w-full text-zinc-500 text-base">
-          <label htmlFor="file-input">
-            <div className=' h-[120px] w-[120px] object-contain flex justify-center items-center shadow-sm rounded-2xl shadow-blue-900 cursor-pointer'>{Image?<img src={URL.createObjectURL(Image)} />:<FaFileUpload size={50} color='gray'/>}</div>
+        
+        <div className="addproductitemfields w-full text-zinc-500 text-base ">
+          <label htmlFor="file-input" className='w-20'>
+            <div className=' h-auto w-full object-contain flex justify-center items-center shadow-sm rounded-2xl shadow-blue-900 cursor-pointer'>{Image?<img src={URL.createObjectURL(Image)} />:<FaFileUpload size={50} color='gray'/>}</div>
           </label>
           <input onChange={imageHandler} type="file" name='image' id='file-input' hidden className='box-border  w-full h-12 rounded-sm pl-[15px] border-[1px] border-gray-300 outline-none text-gray-400 text-base font-mono' />
         </div>
